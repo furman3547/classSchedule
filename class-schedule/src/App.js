@@ -1,10 +1,14 @@
 import React from 'react'
 import './App.css';
+import Login from "./Components/Login"
+import Welcome from "./Components/Welcome.js"
 
 function App() {
   return (
     <div>
-      Hello! 
+      <Welcome />
+     <Login />
+     
     </div>
   );
 }

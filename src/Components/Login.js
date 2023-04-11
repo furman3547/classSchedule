@@ -1,4 +1,8 @@
 import { useRef, useState, useEffecct, useEffect} from 'react';
+
+
+
+
 const Login =()=>{
     const userRef= useRef();
     const errRef=useRef();
@@ -30,7 +34,7 @@ const handleSubmit =async (e) => {
     return(
       
 
-        <section>
+        <section className="login-container">
             <p ref={errRef} className={errMsg ? "errmsg" :
             "offscreen"} aria-live="assertive">{errMsg}</p>
             <h1>Sign In</h1>
@@ -54,7 +58,7 @@ const handleSubmit =async (e) => {
                 onChange={(e) => setPwd(e.target.value)}
                 value={pwd}
                 required 
-                />
+                /><br></br>
                 <button>Sign In</button>
             </form>
             <p>

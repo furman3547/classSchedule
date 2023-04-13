@@ -1,6 +1,12 @@
 
+/* Set color variables */
+:root {
+  --primary-color: #0077cc;
+  --secondary-color: #fff;
+  --error-color: #f44336;
+}
 
-
+/* Set background color of body */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -8,54 +14,102 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f2f2f2;
 }
 
+/* Set font color of code */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+  color: var(--primary-color);
 }
 
+/* Import Montserrat font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
+/* Style for login container */
+/* Style for login container */
 .login-container {
+  position: relative; /* Add this to make sure the pseudo-element is positioned relative to the container */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 50vh;
   font-family: 'Montserrat', sans-serif;
+  background-image: url("https://iili.io/HkpScqQ.md.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
+
+.login-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  opacity: 0.7;
+  z-index: -1;
+  
+}
+
+/* Style for form */
+form {
+  position: relative; /* Add this to make sure the form is positioned on top of the pseudo-element */
+  z-index: 1; /* Add this to make sure the form is positioned on top of the pseudo-element */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+   padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for error message */
 .errmsg {
-  color: red;
+  color: var(--error-color);
 }
 
+/* Style for offscreen elements */
 .offscreen {
   position: absolute;
   left: -9999px;
 }
 
+/* Style for label */
 label {
   display: block;
   margin-bottom: 0.5rem;
+  color: var(--primary-color);
 }
 
+/* Style for input */
 input {
   padding: 0.5rem;
   margin-bottom: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--primary-color);
   border-radius: 4px;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
 }
 
+/* Style for button */
 button {
   padding: 0.5rem;
-  background-color: #0077cc;
-  color: #fff;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
+/* Style for welcome message */
 .welcome{
   display: flex;
   flex-direction: column;
@@ -63,4 +117,6 @@ button {
   align-items: center;
   height: 5vh;
   font-family: 'Montserrat', sans-serif;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
 }

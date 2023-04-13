@@ -1,5 +1,5 @@
 import { useRef, useState, useEffecct, useEffect} from 'react';
-
+import {Link } from 'react-router-dom'
 
 
 
@@ -37,7 +37,7 @@ const handleSubmit =async (e) => {
         <section className="login-container">
             <p ref={errRef} className={errMsg ? "errmsg" :
             "offscreen"} aria-live="assertive">{errMsg}</p>
-            <h1>Sign In</h1>
+       
             
             <form onSubmit={handleSubmit}> 
                 <label htmlFor="username">Username:</label>
@@ -58,17 +58,18 @@ const handleSubmit =async (e) => {
                 onChange={(e) => setPwd(e.target.value)}
                 value={pwd}
                 required 
-                /><br></br>
-                <button>Sign In</button>
-            </form>
-            <p>
-                    Need an Account?<br/>
+                />
+                <button>Sign In</button> <br></br>
+                Need an Account?<br/>
                     <span className='line'>
-                        {/*Router Link Here*/}
-                        <a href="SignUp.js">Sign Up</a>
+                       
+                        <Link to="/signup">SignUp</Link>
                     </span>
-            </p>
+            </form>
+            
         </section>
     )
 }
+
+
 export default Login

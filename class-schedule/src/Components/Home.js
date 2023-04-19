@@ -1,8 +1,16 @@
 import React from 'react'
+import Login from './Login';
+import Welcome from './Welcome';
+
 
 const Home = () => {
   return (
-    <div>Hello</div>
+    <div>
+      <Welcome/>
+       <Login/>
+
+    </div>
+
   )
 }
 

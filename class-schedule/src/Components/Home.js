@@ -1,13 +1,17 @@
 import React from 'react'
-import Login from './Login';
+import SignIn from './auth/SignIn';
+
 import Welcome from './Welcome';
+import SignUp from './auth/SignUp';
 
 
 const Home = () => {
   return (
     <div>
+     
       <Welcome/>
-       <Login/>
+       <SignIn/>
+     
 
     </div>
 

@@ -29,7 +29,7 @@ code {
 
 /* Style for login container */
 /* Style for login container */
-.login-container {
+.sign-in-contianer {
   position: relative; /* Add this to make sure the pseudo-element is positioned relative to the container */
   display: flex;
   flex-direction: column;
@@ -43,13 +43,92 @@ code {
 }
 
 
-.login-container::before {
+.sign-in-contianer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    opacity: 0.7;
+    z-index: -1;
+  }
+
+
+/* Style for form */
+form {
+  position: relative; /* Add this to make sure the form is positioned on top of the pseudo-element */
+  z-index: 1; /* Add this to make sure the form is positioned on top of the pseudo-element */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+   padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for error message */
+.errmsg {
+  color: var(--error-color);
+}
+
+/* Style for offscreen elements */
+.offscreen {
+  position: absolute;
+  left: -9999px;
+}
+
+/* Style for label */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
+/* Style for input */
+input {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+}
+
+/* Style for button */
+button {
+  padding: 0.5rem;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Style for welcome message */
+.welcome{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 5vh;
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+
+.sign-in-contianer:before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 125%;
   background-color: white;
   opacity: 0.7;
   z-index: -1;
@@ -121,9 +200,20 @@ button {
   color: var(--primary-color);
 }
 
+/*style for registration form component*/
 
-.login-container::before {
-  content: '';
+.SignUpForm{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+/* .SignUpForm::before{
+content:''; 
   position: absolute;
   top: 0;
   left: 0;
@@ -132,70 +222,127 @@ button {
   background-color: white;
   opacity: 0.7;
   z-index: -1;
-  
-}
+} */
 
-/* Style for form */
-form {
-  position: relative; /* Add this to make sure the form is positioned on top of the pseudo-element */
-  z-index: 1; /* Add this to make sure the form is positioned on top of the pseudo-element */
+.createanaccountbanner{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 300px;
-   padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Style for error message */
-.errmsg {
-  color: var(--error-color);
-}
-
-/* Style for offscreen elements */
-.offscreen {
-  position: absolute;
-  left: -9999px;
-}
-
-/* Style for label */
-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: var(--primary-color);
-}
-
-/* Style for input */
-input {
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  border: 1px solid var(--primary-color);
-  border-radius: 4px;
-  color: var(--primary-color);
-  background-color: var(--secondary-color);
-}
-
-/* Style for button */
-button {
-  padding: 0.5rem;
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-/* Style for welcome message */
-.welcome{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 5vh;
+  height: 50vh;
   font-family: 'Montserrat', sans-serif;
   background-color: var(--secondary-color);
   color: var(--primary-color);
+}
+
+
+
+
+.container{
+  max-width: 960px;
+  margin-right: auto;
+  margin-left:auto;
+  padding-right: 15px;
+  padding-left: 15px;
+  min-height: 100vh;
+
+}
+.notes-list{
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr))
+}
+
+.note.new{
+  background-color:#CCDDB7;
+}
+
+textarea{
+  border: none;
+  resize: none;
+  background-color: #CCDDB7;
+}
+
+textarea:focus{
+  outline: none;
+}
+
+.save{
+  background-color: #e1e1e1;
+  border: none;
+  border-radius: 15px;
+  padding: 5px 10px 5 px 10px;
+}
+
+.save:hover{
+  background-color: #ededed;
+  cursor: pointer;
+}
+.Header{
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.Toggle{
+
+  background-color: e1e1e1;
+  border: none;
+  border-radius: 15px;
+  padding: 5px 10px 5 px 10px;
+
+}
+
+.Toggle:hover{
+  cursor:pointer;
+}
+
+.dark-mode{
+  background-color: black;
+}
+
+.dark-mode h1{
+  color: white
+}
+.dark-mode h2{
+  color: white
+}
+
+.note{
+  background-color: #f2e9aa;
+  border-radius: 10px;
+  padding: 1rem; 
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  white-space: pre-wrap; 
+
+}
+
+.note-footer{
+  display: flex;
+  align-items:center;
+  justify-content: space-between;
+}
+
+.delete-icon:hover{
+  cursor:pointer;
+}
+
+.edit-icon:hover{
+  cursor:pointer
+}
+
+.microphone-icon:hover{
+  cursor:pointer;
+}
+
+.search{
+  display:flex;
+  align-items: center;
+  background-color:#ededed;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 1.5em;
+ 
 }

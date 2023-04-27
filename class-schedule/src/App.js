@@ -1,10 +1,10 @@
 import React from 'react'
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import './App.css';
-import Login from "./Components/Login"
-import SignUp from './Components/SignUp';
-import Welcome from "./Components/Welcome"
 
+import SignIn from "./Components/auth/SignIn";
+import Welcome from "./Components/Welcome";
+import SignUp from "./Components/auth/SignUp";
 import Home from './Components/Home';
 import Schedule from './Components/Schedule';
 import Notes from './Components/Notes';
@@ -20,11 +20,11 @@ function App() {
   <ResponsiveAppBar />
   <Routes>
     <Route path="/home" element={<Home />} />
-    <Route path="/login" element={<Login />} />
+    <Route path="/SignIn" element={<SignIn/>} />
     <Route path="/schedule" element={<Schedule />} />
     <Route path="/notes" element={<Notes />} />
     <Route path="/schedule-spacing" element={<RowAndColumnSpacing />} />
-    <Route path="/signup" element={<SignUp />} />
+    <Route path="/SignUp" element={<SignUp />}/>
   </Routes>
 
 

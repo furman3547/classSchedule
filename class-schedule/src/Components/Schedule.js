@@ -3,12 +3,9 @@ import DragDrop from "./DragDrop";
 const Schedule = () => {
   return (
   
-    <div>Schedule
-
-      <DragDrop/>
+    <div> <DragDrop/>
     </div>
    
   )
 }
-
 export default Schedule;

@@ -10,6 +10,8 @@ import Schedule from './Components/Schedule';
 import Notes from './Components/Notes';
 import RowAndColumnSpacing from './Components/Schedule';
 import ResponsiveAppBar from './Components/Navbar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 function App() {

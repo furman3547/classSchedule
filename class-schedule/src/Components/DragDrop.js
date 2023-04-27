@@ -2,7 +2,6 @@ import React from 'react';
 import Draggable from 'react-draggable';
 import { Box } from '@mui/material';
 import { SportsSoccer, Fastfood, School, DirectionsRun, Language, Functions, Map, ColorLens } from '@mui/icons-material';
-
 class DragDrop extends React.Component {
   constructor(props) {
     super(props);
@@ -17,11 +16,9 @@ class DragDrop extends React.Component {
         { id: 7, name: "Art", icon: <ColorLens /> }
       ],
       completeItems: [
-
       ]
     }
   }
-
   render() {
     const incompleteList = this.state.incompleteItems.map(item => (
       <Draggable
@@ -37,7 +34,6 @@ class DragDrop extends React.Component {
         </div>
       </Draggable>
     ));
-
     const completeList = this.state.completeItems.map(item => (
       <Draggable
         key={item.id}
@@ -52,7 +48,6 @@ class DragDrop extends React.Component {
         </div>
       </Draggable>
     ));
-
     return (
       <Box display="flex" justifyContent="center">
         <div style={{ float: 'right', width: '40%' }}>
@@ -67,5 +62,4 @@ class DragDrop extends React.Component {
     );
   }
 }
-
 export default DragDrop;

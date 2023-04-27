@@ -1,9 +1,8 @@
 import React from 'react'
-import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import { Routes,Route } from 'react-router-dom';
 import './App.css';
 import Login from "./Components/Login"
 import SignUp from './Components/SignUp';
-import Welcome from "./Components/Welcome"
 
 import Home from './Components/Home';
 import Schedule from './Components/Schedule';

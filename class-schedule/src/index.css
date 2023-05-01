@@ -238,3 +238,10 @@ h3{
   color: #e92121;
   border-radius: 10px;
 }
+
+.handle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

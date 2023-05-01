@@ -1,7 +1,74 @@
 import React from 'react';
 import Draggable from 'react-draggable';
-import { Box } from '@mui/material';
-import { SportsSoccer, Fastfood, School, DirectionsRun, Language, Functions, Map, ColorLens } from '@mui/icons-material';
+import { Box, Grid, Paper } from '@mui/material';
+import { SportsSoccer, Fastfood, School, Language, Functions, Map, ColorLens } from '@mui/icons-material';
+
+class IncompleteItems extends React.Component {
+  handleDragStart = (e, id) => {
+    // Add the id of the dragged item to the dataTransfer object
+    e.dataTransfer.setData("text/plain", id);
+  }
+
+  render() {
+    const incompleteItems = this.props.items.map(item => (
+      <Draggable
+        key={item.id}
+        axis="both"
+        handle=".handle"
+        position={{ x: 0, y: 25 * item.id }}
+        onStop={(event, data) => {
+          // check if the item was dropped on the right side of the screen
+          if (data.x > window.innerWidth / 2) {
+            // update the position of the dragged item to the right side of the screen
+            const newPosition = { x: window.innerWidth - 200, y: data.y };
+            event.target.style.position = 'fixed';
+            event.target.style.left = `${newPosition.x}px`;
+            event.target.style.top = `${newPosition.y}px`;
+          }
+        }}
+      >
+        <Paper
+          sx={{ p: 1, textAlign: 'center', backgroundColor: '#eee' }}
+          draggable="true"
+          onDragStart={(e) => this.handleDragStart(e, item.id)}
+        >
+          <div className="handle" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+            {item.name}
+          </div>
+          {item.icon}
+        </Paper>
+      </Draggable>
+    ));
+
+    return (
+      <div onDragOver={(e) => e.preventDefault()} onDrop={(e) => this.props.handleDrop(e, "incompleteItems")}>
+        <h2>Incomplete Items</h2>
+        {incompleteItems}
+      </div>
+    );
+  }
+}
+
+class CompletedItems extends React.Component {
+  render() {
+    const completedItems = this.props.items.map(item => (
+      <Paper
+        key={item.id}
+        sx={{ p: 1, textAlign: 'right', backgroundColor: '#ccc' }}
+      >
+        {item.name}
+      </Paper>
+    ));
+
+    return (
+      <div onDragOver={(e) => e.preventDefault()} onDrop={(e) => this.props.handleDrop(e, "completedItems")}>
+        <h2>Completed Items</h2>
+        {completedItems}
+      </div>
+    );
+  }
+}
+
 class DragDrop extends React.Component {
   constructor(props) {
     super(props);
@@ -13,53 +80,48 @@ class DragDrop extends React.Component {
         { id: 4, name: "English", icon: <Language /> },
         { id: 5, name: "Math", icon: <Functions /> },
         { id: 6, name: "Science", icon: <School /> },
-        { id: 7, name: "Art", icon: <ColorLens /> }
+        { id: 7, name: "Art", icon: <ColorLens /> },
       ],
-      completeItems: [
-      ]
+      completedItems: [],
+    };
+  }
+
+  handleDrop = (e, target) => {
+    e.preventDefault();
+    const itemId = parseInt(e.dataTransfer.getData("text/plain"));
+    const item = this.state.incompleteItems.find(item => item.id === itemId);
+
+    if (item) {
+      // Remove the dragged item from the incompleteItems array
+      const incompleteItems = this.state.incompleteItems.filter(item => item.id !== itemId);
+      
+      // Add the dragged item to the completedItems array
+      const completedItems = [...this.state.completedItems, item];
+      
+      // Update the state with the new arrays
+      this.setState({
+        incompleteItems,
+        completedItems,
+      });
     }
   }
+
   render() {
-    const incompleteList = this.state.incompleteItems.map(item => (
-      <Draggable
-        key={item.id}
-        axis="both"
-        handle=".handle"
-        defaultPosition={{ x: 100, y: 25 * item.id }}
-        grid={[25, 25]}
-      >
-        <div>
-          <div className="handle">{item.name}</div>
-          {item.icon}
-        </div>
-      </Draggable>
-    ));
-    const completeList = this.state.completeItems.map(item => (
-      <Draggable
-        key={item.id}
-        axis="both"
-        handle=".handle"
-        defaultPosition={{ x: 400, y: 25 * item.id }}
-        grid={[25, 25]}
-      >
-        <div>
-          <div className="handle">{item.name}</div>
-          {item.icon}
-        </div>
-      </Draggable>
-    ));
     return (
-      <Box display="flex" justifyContent="center">
-        <div style={{ float: 'right', width: '40%' }}>
-          <h2>To Do</h2>
-          {incompleteList}
-        </div>
-        <div style={{ float: 'left', width: '40%' }}>
-          <h2>Done</h2>
-          {completeList}
-        </div>
-      </Box>
+      <div>
+        <Box sx={{ flexGrow: 1 }}>
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <IncompleteItems items={this.state.incompleteItems} handleDrop={this.handleDrop} />
+            </Grid>
+            <Grid item xs={6}>
+              <CompletedItems items={this.state.completedItems} handleDrop={this.handleDrop} />
+            </Grid>
+          </Grid>
+        </Box>
+      </div>
     );
   }
 }
-export default DragDrop;
+    
+    export default DragDrop;

@@ -1,33 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from "firebase/auth";
 import LoginSuccess from '../LogInSuccess';
 import Schedule from '../Schedule';
+import SignUp from './SignUp';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(''); // state for handling error message
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const navigateSignUp = () => {
     navigate('/SignUp');
   };
 
-  const signIn = (e) => {
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        setIsAuthenticated(true);
+      } else {
+        setIsAuthenticated(false);
+      }
+    });
+  
+    return unsubscribe;
+  }, []);
+  
+  const signIn = async (e) => {
     e.preventDefault();
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
-        setIsAuthenticated(true);
-      }).catch((error) => {
-        console.log(error);
-        setIsAuthenticated(false);
-        setErrorMessage('Incorrect Email or Password');
-      })
+    try {
+      await setPersistence(auth, browserSessionPersistence);
+      await signInWithEmailAndPassword(auth, email, password);
+      setErrorMessage('');
+    } catch (error) {
+      console.log(error);
+      setIsAuthenticated(false);
+      setErrorMessage('Incorrect Email or Password');
+    }
   }
 
   return (
@@ -35,11 +48,11 @@ const SignIn = () => {
       {isAuthenticated ? (
         <div>
           {/* <LoginSuccess /> */}
-          <Schedule />
+         <LoginSuccess/>
         </div>
       ) : (
         <form onSubmit={signIn}>
-          {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} {/* display error message */}
+          {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
           <h1>Log In to Your Account</h1>
           <input type="email" placeholder='Enter your email'
             value={email}

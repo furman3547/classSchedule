@@ -346,3 +346,11 @@ textarea:focus{
   margin-bottom: 1.5em;
  
 }
+
+.handle:hover{
+  cursor:pointer;
+}
+
+.paperblock:hover{
+  cursor:pointer;
+}

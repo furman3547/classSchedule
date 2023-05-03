@@ -7,10 +7,11 @@ import Welcome from "./Components/Welcome";
 import SignUp from "./Components/auth/SignUp";
 import Home from './Components/Home';
 import Schedule from './Components/Schedule';
-
+import Note from './Components/Note';
 import RowAndColumnSpacing from './Components/Schedule';
 import ResponsiveAppBar from './Components/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import NoteApp from './Components/NoteApp';
 
 
 
@@ -27,7 +28,7 @@ function App() {
     <Route path="/Home"element={<Home/>} />
     <Route path="/SignIn" element={<SignIn/>} />
     <Route path="/schedule" element={<Schedule />} />
-    {/* <Route path="/Note" element={<Note />}/> */}
+    <Route path="/Note" element={<NoteApp />}/>
     <Route path="/schedule-spacing" element={<RowAndColumnSpacing />} />
     <Route path="/SignUp" element={<SignUp />}/>
   </Routes>
